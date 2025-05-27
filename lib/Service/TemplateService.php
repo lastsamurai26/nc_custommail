@@ -23,6 +23,21 @@ class TemplateService {
     public function getTemplate($type, $lang = 'en') {
         $key = "custom_emailtemplate_{$type}_{$lang}";
         $template = $this->config->getAppValue('nc_custom_emailtemplates', $key, '');
+        if ($template === '') {
+            // Standardtemplate laden, falls noch keines gesetzt wurde
+            $filename = \OC_App::getAppPath('nc_custom_emailtemplates') . "/defaults/{$type}_{$lang}.html";
+            if (file_exists($filename)) {
+                $template = file_get_contents($filename);
+            } else {
+                // Fallback: englisches Standardtemplate, falls Sprache nicht existiert
+                $filename = \OC_App::getAppPath('nc_custom_emailtemplates') . "/defaults/{$type}_en.html";
+                if (file_exists($filename)) {
+                    $template = file_get_contents($filename);
+                } else {
+                    $template = '';
+                }
+            }
+        }
         return $template;
     }
 
@@ -42,14 +57,29 @@ class TemplateService {
 
     public function listBackups($type, $lang) {
         $pattern = sprintf('%s_%s_*.bak.html', $type, $lang);
-        return $this->backupDir->search($pattern);
+        $files = $this->backupDir->getDirectoryListing();
+        $result = [];
+        foreach ($files as $file) {
+            if (fnmatch($pattern, $file->getName())) {
+                $result[] = $file->getName();
+            }
+        }
+        return $result;
     }
 
-    public function restoreBackup($file) {
+    public function restoreBackup($type, $lang, $filename) {
+        $file = $this->backupDir->get($filename);
         $content = $file->getContent();
-        $parts = explode('_', $file->getName());
-        $type = $parts[0];
-        $lang = $parts[1];
         $this->setTemplate($type, $lang, $content);
+    }
+    public function resetToDefault($type, $lang = 'en') {
+        $defaultsPath = \OC_App::getAppPath('nc_custom_emailtemplates') . "/defaults/{$type}_{$lang}.html";
+        if (!file_exists($defaultsPath)) {
+            // Fallback: En, wenn z.B. de fehlt
+            $defaultsPath = \OC_App::getAppPath('nc_custom_emailtemplates') . "/defaults/{$type}_en.html";
+        }
+        $defaultContent = file_get_contents($defaultsPath);
+        $this->setTemplate($type, $lang, $defaultContent);
+        return $defaultContent;
     }
 }

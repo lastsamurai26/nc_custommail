@@ -20,6 +20,7 @@ style('nc_custom_emailtemplates', 'admin/settings');
     <button id="save-template"><?php p($l->t('Speichern')); ?></button>
     <button id="preview-template"><?php p($l->t('Vorschau')); ?></button>
     <button id="backup-list"><?php p($l->t('Backups anzeigen')); ?></button>
+    <button id="reset-template"><?php p($l->t('Auf Standard zurücksetzen')); ?></button>
     <div id="template-preview"></div>
     <div id="backups-modal" class="hidden"></div>
     <p>

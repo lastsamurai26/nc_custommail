@@ -85,4 +85,16 @@ class AdminController extends Controller
         $user = \OC::$server->getUserSession()->getUser();
         return $user && $user->isAdmin();
     }
+    /**
+     * @NoAdminRequired
+     * @NoCSRFRequired
+     */
+    public function resetToDefault($type, $lang)
+    {
+        if (!$this->isAdmin()) {
+            return new JSONResponse(['error' => 'Forbidden'], Http::STATUS_FORBIDDEN);
+        }
+        $tpl = $this->templateService->resetToDefault($type, $lang);
+        return new JSONResponse(['template' => $tpl]);
+    }
 }

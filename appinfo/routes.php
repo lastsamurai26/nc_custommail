@@ -6,5 +6,6 @@ return [
         ['name' => 'admin#setTemplate', 'url' => '/admin/template', 'verb' => 'POST'],
         ['name' => 'admin#listBackups', 'url' => '/admin/backups', 'verb' => 'GET'],
         ['name' => 'admin#restoreBackup', 'url' => '/admin/restore', 'verb' => 'POST'],
+        ['name' => 'admin#resetToDefault', 'url' => '/admin/reset', 'verb' => 'POST'],
     ]
 ];
