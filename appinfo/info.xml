@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<info>
+    <id>nc_custom_emailtemplates</id>
+    <name>Custom Email Templates</name>
+    <description>Bearbeite und personalisiere System-E-Mail-Templates über die Nextcloud Admin-GUI.</description>
+    <licence>agpl</licence>
+    <author>lastsamurai26</author>
+    <version>1.0.0</version>
+    <namespace>NC_custom_emailtemplates</namespace>
+    <default_enable>yes</default_enable>
+    <category>tools</category>
+    <dependencies>
+        <nextcloud min-version="29" max-version="33"/>
+    </dependencies>
+</info>
