@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <info>
-    <id>nc_custom_emailtemplates</id>
-    <name>Custom Email Templates</name>
-    <description>Bearbeite und personalisiere System-E-Mail-Templates über die Nextcloud Admin-GUI.</description>
-    <licence>agpl</licence>
-    <author>lastsamurai26</author>
-    <version>1.0.0</version>
-    <namespace>NC_custom_emailtemplates</namespace>
-    <default_enable>yes</default_enable>
-    <category>tools</category>
-    <dependencies>
-        <nextcloud min-version="29" max-version="33"/>
-    </dependencies>
+  <id>custommailtext</id>
+  <name>Benutzerdefinierte Mailtexte</name>
+  <description>Ermöglicht es Administratoren, E-Mail-Texte für neue Nutzer und Passwort-Zurücksetzen anzupassen.</description>
+  <version>1.0.0</version>
+  <licence>agpl</licence>
+  <author>Dein Name</author>
+  <namespace>CustomMailText</namespace>
+  <default_enable>true</default_enable>
+  <category>tools</category>
+  <dependencies>
+    <nextcloud min-version="30" max-version="32" />
+  </dependencies>
 </info>
