@@ -12,4 +12,8 @@
   <dependencies>
     <nextcloud min-version="30" max-version="32" />
   </dependencies>
+  <admin>
+  <section>settings-admin</section>
+ </admin>
+
 </info>
